@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>스크린 리더 미션: 베이컨 토마토 디럭스 햄버거 가격은 얼마?</title>
+    <style>
+        /* CSS 스타일 (이전과 동일) */
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif; line-height: 1.6; background-color: #ffffff; color: #333; overflow: hidden; }
+        #app-container { max-width: 600px; margin: 0 auto; padding: 20px; position: relative; height: 100%; overflow: hidden; }
+        h1 { font-size: 1.5em; margin-bottom: 1em; color: #2c3e50; text-align: center; padding: 10px 0; }
+        .invisible-but-interactive { opacity: 0 !important; pointer-events: auto; /* background-color: rgba(255, 0, 0, 0.05); border: 1px dashed red; */ }
+        .has-focus { outline: 3px solid rgba(0, 123, 255, 0.5); outline-offset: 2px; }
+        .btn { display: block; width: 100%; padding: 12px 15px; margin-bottom: 10px; font-size: 1em; font-weight: 500; text-align: center; cursor: default; border: 1px solid #e0e0e0; border-radius: 8px; background-color: transparent; color: transparent; position: relative; appearance: none; -webkit-appearance: none; -moz-appearance: none; }
+        .btn:not(.invisible-but-interactive) { background-color: #007bff; color: white; border: none; opacity: 1; cursor: pointer; }
+        .btn:not(.invisible-but-interactive):active { background-color: #0056b3; transform: scale(0.98); }
+        #home-screen {} #home-screen h1 {} .category-buttons .btn {}
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: hidden; background-color: rgba(255, 255, 255, 0.95); padding: 20px; }
+        .modal.modal-open { display: block; } #app-container.modal-active #home-screen { display: none; }
+        .modal-content { position: relative; background-color: transparent; height: 100%; overflow-y: auto; }
+        .modal-content h1 { font-size: 1.3em; text-align: left; border: none; background: none; }
+        .modal-content .btn-back { width: auto; display: inline-block; padding: 8px 15px; margin-bottom: 15px; font-size: 0.9em; }
+        .modal-content .btn-next { width: auto; display: inline-block; padding: 12px 25px; font-size: 1em; }
+        .modal-footer { margin-top: 20px; padding-top: 15px; border-top: 1px solid transparent; text-align: right; }
+        .checkbox-item { display: flex; align-items: center; margin-bottom: 12px; padding: 12px; border: 1px solid #e0e0e0; border-radius: 6px; background-color: transparent; }
+        .checkbox-item input[type="checkbox"] { opacity: 0; margin-right: 12px; flex-shrink: 0; width: 1.5em; height: 1.5em; pointer-events: auto; appearance: none; -webkit-appearance: none; position: relative; }
+        .checkbox-item label { opacity: 0; flex-grow: 1; font-size: 0.95em; pointer-events: none; padding: 5px 0; }
+        #alert-container { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 2000; background-color: rgba(0, 0, 0, 0.8); color: white; padding: 10px 20px; border-radius: 4px; display: none; pointer-events: none; }
+    </style>
+</head>
+<body>
+    <div id="alert-container" role="alert" aria-live="assertive"></div>
+
+    <div id="app-container">
+        <div id="home-screen">
+            <h1 class="invisible-but-interactive" tabindex="0">베이컨 토마토 디럭스 햄버거 가격은 얼마?</h1>
+            <div class="category-buttons">
+                <button id="btn-category-fresh" class="btn invisible-but-interactive" tabindex="0">신선 식품</button>
+                <button id="btn-category-dairy" class="btn invisible-but-interactive" tabindex="0">요거트/유제품</button>
+                <button id="btn-category-fastfood" class="btn invisible-but-interactive" tabindex="0">패스트푸드</button>
+                <button id="btn-category-seafood" class="btn invisible-but-interactive" tabindex="0">수산물</button>
+                <button id="btn-category-processed" class="btn invisible-but-interactive" tabindex="0">가공식품</button>
+                <button id="btn-category-icecream" class="btn invisible-but-interactive" tabindex="0">아이스크림</button>
+            </div>
+        </div>
+
+        <div id="modal-fresh" class="modal" aria-hidden="true" role="dialog" aria-label="신선 식품 카테고리"><div class="modal-content"><button id="btn-back-from-fresh" class="btn btn-back invisible-but-interactive" tabindex="0">뒤로가기</button><h1 class="invisible-but-interactive" tabindex="0">신선 식품 카테고리</h1><form id="form-fresh"><div class="checkbox-item invisible-but-interactive"><input type="checkbox" id="chk-fresh-1" name="fresh_items" value="15900" tabindex="0"><label for="chk-fresh-1">GAP 인증 설향 딸기 500 그램 15,900 원</label></div><div class="checkbox-item invisible-but-interactive"><input type="checkbox" id="chk-fresh-2" name="fresh_items" value="3500" tabindex="0"><label for="chk-fresh-2">쌈채소 모듬 3,500 원</label></div><div class="checkbox-item invisible-but-interactive"><input type="checkbox" id="chk-fresh-3" name="fresh_items" value="18800" tabindex="0"><label for="chk-fresh-3">국내산 냉장 삼겹살 600 그램 18,800 원</label></div><div class="checkbox-item invisible-but-interactive"><input type="checkbox" id="chk-fresh-4" name="fresh_items" value="16500" tabindex="0"><label for="chk-fresh-4">노르웨이산 생연어 필렛 300 그램 16,500 원</label></div><div class="checkbox-item invisible-but-interactive"><input type="checkbox" id="chk-fresh-5" name="fresh_items" value="5800" tabindex="0"><label for="chk-fresh-5">동물복지 유정란 10구 5,800 원</label></div><div class="modal-footer"><button type="button" id="btn-next-from-fresh" class="btn btn-next" tabindex="0">다음</button></div></form></div></div>
+        <div id="modal-dairy" class="modal" aria-hidden="true" role="dialog" aria-label="요거트/유제품 카테고리"><div class="modal-content"><button id="btn-back-from-dairy" class="btn btn-back invisible-but-interactive" tabindex="0">뒤로가기</button><h1 class="invisible-but-interactive" tabindex="0">요거트/유제품 카테고리</h1><form id="form-dairy"><div class="checkbox-item invisible-but-interactive"><input type="checkbox" id="chk-dairy-1" name="dairy_items" value="6900" tabindex="0"><label for="chk-dairy-1">무가당 플레인 그릭 요거트 450 그램 6,900 원</label></div><div class="checkbox-item invisible-but-interactive"><input type="checkbox" id="chk-dairy-2" name="dairy_items" value="3200" tabindex="0"><label for="chk-dairy-2">떠먹는 딸기 요거트 85g*4 입 3,200 원</label></div><div class="checkbox-item invisible-but-interactive"><input type="checkbox" id="chk-dairy-3" name="dairy_items" value="2950" tabindex="0"><label for="chk-dairy-3">1등급 저지방 우유 900 밀리리터 2,950 원</label></div><div class="checkbox-item invisible-but-interactive"><input type="checkbox" id="chk-dairy-4" name="dairy_items" value="5200" tabindex="0"><label for="chk-dairy-4">간편 슬라이스 체다 치즈 270 그램 5,200 원</label></div><div class="checkbox-item invisible-but-interactive"><input type="checkbox" id="chk-dairy-5" name="dairy_items" value="3800" tabindex="0"><label for="chk-dairy-5">사과맛 요구르트 150 밀리리터 3,800 원</label></div><div class="modal-footer"><button type="button" id="btn-next-from-dairy" class="btn btn-next" tabindex="0">다음</button></div></form></div></div>
+        <div id="modal-fastfood" class="modal" aria-hidden="true" role="dialog" aria-label="패스트푸드 카테고리"><div class="modal-content"><button id="btn-back-from-fastfood" class="btn btn-back invisible-but-interactive" tabindex="0">뒤로가기</button><h1 class="invisible-but-interactive" tabindex="0">패스트푸드 카테고리</h1><form id="form-fastfood"><div class="checkbox-item invisible-but-interactive"><input type="checkbox" id="chk-fastfood-1" name="fastfood_items" value="4500" tabindex="0"><label for="chk-fastfood-1">오리지널 비프 치즈버거 200그램 4,500 원</label></div><div class="checkbox-item invisible-but-interactive"><input type="checkbox" id="chk-fastfood-2" name="fastfood_items" value="7900" tabindex="0"><label for="chk-fastfood-2">콤비네이션 냉동 피자 한판 450그램 7,900 원</label></div><div class="checkbox-item invisible-but-interactive"><input type="checkbox" id="chk-fastfood-3" name="fastfood_items" value="11500" tabindex="0"><label for="chk-fastfood-3">바삭한 후라이드 치킨 순살 500그램 11,500 원</label></div><div class="checkbox-item invisible-but-interactive"><input type="checkbox" id="chk-fastfood-4" name="fastfood_items" value="6500" tabindex="0"><label for="chk-fastfood-4">베이컨 토마토 디럭스 햄버거 350 그램 6,500 원</label></div><div class="checkbox-item invisible-but-interactive"><input type="checkbox" id="chk-fastfood-5" name="fastfood_items" value="7800" tabindex="0"><label for="chk-fastfood-5">모짜렐라 크리스피 핫도그 5개입 425그램 7,800 원</label></div><div class="modal-footer"><button type="button" id="btn-next-from-fastfood" class="btn btn-next" tabindex="0">다음</button></div></form></div></div>
+        <div id="modal-seafood" class="modal" aria-hidden="true" role="dialog" aria-label="수산물 카테고리"><div class="modal-content"><button id="btn-back-from-seafood" class="btn btn-back invisible-but-interactive" tabindex="0">뒤로가기</button><h1 class="invisible-but-interactive" tabindex="0">수산물 카테고리</h1><form id="form-seafood"><div class="checkbox-item invisible-but-interactive"><input type="checkbox" id="chk-seafood-1" name="seafood_items" value="6900" tabindex="0"><label for="chk-seafood-1">국내산 손질 고등어 특대 2마리 (400그램 내외) 6,900 원</label></div><div class="checkbox-item invisible-but-interactive"><input type="checkbox" id="chk-seafood-2" name="seafood_items" value="12000" tabindex="0"><label for="chk-seafood-2">동해안 생물 오징어 3마리 (600그램 내외) 12,000 원</label></div><div class="checkbox-item invisible-but-interactive"><input type="checkbox" id="chk-seafood-3" name="seafood_items" value="22500" tabindex="0"><label for="chk-seafood-3">자연산 냉동 흰다리새우 1킬로그램 22,500 원</label></div><div class="checkbox-item invisible-but-interactive"><input type="checkbox" id="chk-seafood-4" name="seafood_items" value="8500" tabindex="0"><label for="chk-seafood-4">국산 활 바지락 1킬로그램 8,500 원</label></div><div class="checkbox-item invisible-but-interactive"><input type="checkbox" id="chk-seafood-5" name="seafood_items" value="11900" tabindex="0"><label for="chk-seafood-5">노르웨이산 생연어회 슬라이스 180그램 11,900 원</label></div><div class="modal-footer"><button type="button" id="btn-next-from-seafood" class="btn btn-next" tabindex="0">다음</button></div></form></div></div>
+        <div id="modal-processed" class="modal" aria-hidden="true" role="dialog" aria-label="가공식품 카테고리"><div class="modal-content"><button id="btn-back-from-processed" class="btn btn-back invisible-but-interactive" tabindex="0">뒤로가기</button><h1 class="invisible-but-interactive" tabindex="0">가공식품 카테고리</h1><form id="form-processed"><div class="checkbox-item invisible-but-interactive"><input type="checkbox" id="chk-processed-1" name="processed_items" value="6700" tabindex="0"><label for="chk-processed-1">마일드 참치캔 150그램 4개 묶음 6,700 원</label></div><div class="checkbox-item invisible-but-interactive"><input type="checkbox" id="chk-processed-2" name="processed_items" value="5300" tabindex="0"><label for="chk-processed-2">짜지 않은 리치팜 햄 340그램 5,300 원</label></div><div class="checkbox-item invisible-but-interactive"><input type="checkbox" id="chk-processed-3" name="processed_items" value="4800" tabindex="0"><label for="chk-processed-3">얼큰한 해물맛 라면 5개입 4,800 원</label></div><div class="checkbox-item invisible-but-interactive"><input type="checkbox" id="chk-processed-4" name="processed_items" value="1900" tabindex="0"><label for="chk-processed-4">3분 비프 카레 순한맛 200그램 1,900 원</label></div><div class="checkbox-item invisible-but-interactive"><input type="checkbox" id="chk-processed-5" name="processed_items" value="6900" tabindex="0"><label for="chk-processed-5">종가집 맛김치 500그램 6,900 원</label></div><div class="modal-footer"><button type="button" id="btn-next-from-processed" class="btn btn-next" tabindex="0">다음</button></div></form></div></div>
+        <div id="modal-icecream" class="modal" aria-hidden="true" role="dialog" aria-label="아이스크림 카테고리"><div class="modal-content"><button id="btn-back-from-icecream" class="btn btn-back invisible-but-interactive" tabindex="0">뒤로가기</button><h1 class="invisible-but-interactive" tabindex="0">아이스크림 카테고리</h1><form id="form-icecream"><div class="checkbox-item invisible-but-interactive"><input type="checkbox" id="chk-icecream-1" name="icecream_items" value="9500" tabindex="0"><label for="chk-icecream-1">달콤 초코칩 아이스크림 파인트 474밀리리터 9,500 원</label></div><div class="checkbox-item invisible-but-interactive"><input type="checkbox" id="chk-icecream-2" name="icecream_items" value="6200" tabindex="0"><label for="chk-icecream-2">상큼 딸기 아이스 바 10개입 6,200 원</label></div><div class="checkbox-item invisible-but-interactive"><input type="checkbox" id="chk-icecream-3" name="icecream_items" value="7500" tabindex="0"><label for="chk-icecream-3">바삭 초코 크런치 아이스크림 콘 5개입 7,500 원</label></div><div class="checkbox-item invisible-but-interactive"><input type="checkbox" id="chk-icecream-4" name="icecream_items" value="2000" tabindex="0"><label for="chk-icecream-4">부드러운 쿠키 앤 크림 아이스 샌드 150밀리리터 2,000 원</label></div><div class="checkbox-item invisible-but-interactive"><input type="checkbox" id="chk-icecream-5" name="icecream_items" value="8800" tabindex="0"><label for="chk-icecream-5">미니 아이스크림 골라담기 8개 세트 8,800 원</label></div><div class="modal-footer"><button type="button" id="btn-next-from-icecream" class="btn btn-next" tabindex="0">다음</button></div></form></div></div>
+        </div> <script>
+    (function() {
+      'use strict';
+
+      /**
+       * 1. SpeechManager: 음성 출력 관리 (OS 감지 및 iOS 'Yuna' 지정 추가)
+       */
+      const SpeechManager = {
+        synth: window.speechSynthesis, utterance: null, voices: [], koreanVoice: null, speaking: false, queue: [], lastFocusText: '', isSpeakingAlert: false,
+        isIOS: false, // OS 감지 플래그
+
+        init: function() {
+          // --- OS Detection ---
+          // navigator.userAgent 는 더 이상 사용되지 않으므로 navigator.platform 또는 navigator.userAgentData 를 확인
+          // navigator.userAgentData 는 보안 컨텍스트(HTTPS)에서만 사용 가능하며 아직 일부 브라우저에서만 지원됨
+          // navigator.platform 은 deprecated 되었지만 아직 널리 사용 가능
+          // userAgent 문자열 검사는 여전히 가장 호환성 높은 방법일 수 있음
+          const platform = navigator.platform?.toLowerCase() || "";
+          const userAgent = navigator.userAgent?.toLowerCase() || "";
+          this.isIOS = /iphone|ipad|ipod/.test(userAgent) || (platform === 'macintel' && navigator.maxTouchPoints > 1); // iPadOS 13+ 대응 포함
+          console.log(`OS Detection: platform='${platform}', userAgent='${userAgent.substring(0, 50)}...', isIOS=${this.isIOS}`);
+          // --- End OS Detection ---
+
+          if (!this.synth) { console.error('Speech Synthesis API 미지원'); alert('음성 기능 사용 불가 브라우저'); return false; }
+          this.utterance = new SpeechSynthesisUtterance(); this.utterance.pitch = 1; this.utterance.rate = 1; this.utterance.volume = 1;
+          this.utterance.onstart = () => { this.speaking = true; };
+          this.utterance.onend = () => { this.speaking = false; this.isSpeakingAlert = false; this.processQueue(); };
+          this.utterance.onerror = (e) => { console.error('TTS Error:', e.error); this.speaking = false; this.isSpeakingAlert = false; this.queue = []; };
+
+          // --- 한국어 음성 로드 및 OS별 설정 로직 ---
+          const loadVoices = () => {
+            try { // getVoices() 호출 시 발생할 수 있는 오류 처리
+                this.voices = this.synth.getVoices();
+            } catch(error) {
+                console.error("getVoices() 호출 중 오류:", error);
+                this.voices = []; // 오류 시 빈 배열로 초기화
+            }
+            // console.log("사용 가능한 음성 목록:", this.voices); // 디버깅 필요시
+
+            this.koreanVoice = null; // 검색 전 초기화
+
+            if (this.isIOS) {
+                console.log("iOS 감지됨. 'Yuna' 음성 검색 시도...");
+                // iOS에서는 이름으로 찾는 것이 중요할 수 있음. 대소문자 구분 가능성 고려.
+                this.koreanVoice = this.voices.find(voice => voice.name === 'Yuna' && voice.lang.startsWith('ko-KR'));
+                if (this.koreanVoice) {
+                    console.log("iOS 'Yuna' 음성 발견 및 선택.");
+                } else {
+                    console.warn("iOS 'Yuna' 음성을 찾지 못했습니다. 다른 한국어 음성으로 대체 검색합니다.");
+                    // Yuna 없을 경우 iOS용 한국어 대체 검색 (기본->로컬->아무거나)
+                    this.koreanVoice = this.voices.find(voice => voice.lang.startsWith('ko-KR') && voice.default) ||
+                                       this.voices.find(voice => voice.lang.startsWith('ko-KR') && voice.localService) ||
+                                       this.voices.find(voice => voice.lang.startsWith('ko-KR'));
+                }
+            } else {
+                // Android 또는 다른 OS: 기존 로직 (기본->로컬->아무거나)
+                console.log("Android 또는 다른 OS 감지됨. 기본 한국어 음성 검색...");
+                 this.koreanVoice = this.voices.find(voice => voice.lang.startsWith('ko-KR') && voice.default) ||
+                                   this.voices.find(voice => voice.lang.startsWith('ko-KR') && voice.localService) ||
+                                   this.voices.find(voice => voice.lang.startsWith('ko-KR'));
+            }
+
+            // 최종 선택된 음성 설정
+            if (this.koreanVoice) {
+                console.log("최종 선택된 한국어 음성:", this.koreanVoice.name, `(${this.koreanVoice.lang})`);
+                this.utterance.voice = this.koreanVoice;
+                this.utterance.lang = this.koreanVoice.lang; // 음성 객체의 언어 코드 사용
+            } else {
+                console.warn("사용 가능한 한국어 음성을 최종적으로 찾지 못했습니다. lang='ko-KR' 설정에 의존합니다.");
+                this.utterance.lang = 'ko-KR'; // 한국어 음성 없으면 언어 코드만 설정
+                this.utterance.voice = null; // 명시적으로 voice 제거
+            }
+          };
+
+          // 음성 목록 로드는 비동기적일 수 있음
+          // getVoices()가 즉시 목록을 반환하지 않을 수 있으므로, onvoiceschanged 사용 필수
+          if (this.synth.onvoiceschanged !== undefined) {
+            this.synth.onvoiceschanged = loadVoices;
+          }
+          loadVoices(); // 초기 목록 로드 시도 (이미 로드된 경우)
+          // --- 음성 로드 로직 끝 ---
+
+          console.log("SpeechManager 초기화 완료"); return true;
+        },
+        // speak, _executeSpeak, processQueue, speakElementInfo, alert 메소드는 이전과 동일
+        speak: function(text, priority = false) { if (!text || !this.utterance) return; if (!priority && text === this.lastFocusText && !this.isSpeakingAlert) return; if (this.speaking) { if (priority || !this.isSpeakingAlert) { this.synth.cancel(); this.speaking = false; this.isSpeakingAlert = false; this.queue = []; setTimeout(() => this._executeSpeak(text, priority), 50); return; } else { if (!this.queue.find(item => item.text === text)) { this.queue.push({ text, priority }); } return; } } else { this._executeSpeak(text, priority); } },
+        _executeSpeak: function(text, priority) { if (!text || !this.utterance) return; this.utterance.text = text; this.isSpeakingAlert = priority; if (!priority) { this.lastFocusText = text; } try { /*console.log(`발화 시도: "${text}" | Voice: ${this.utterance.voice?.name}`);*/ this.synth.speak(this.utterance); } catch (error) { console.error("synth.speak() 오류:", error); this.speaking = false; this.isSpeakingAlert = false; } },
+        processQueue: function() { if (this.queue.length > 0 && !this.speaking) { const next = this.queue.shift(); this.speak(next.text, next.priority); } },
+        speakElementInfo: function(element) { if (!element) return; let text = '', type = '', tag = element.tagName.toLowerCase(), typeAttr = element.getAttribute('type'); try { if (tag === 'h1') { type = ''; text = element.textContent?.trim() || '제목'; } else if (tag === 'button') { type = '버튼'; text = element.textContent?.trim() || '버튼'; } else if (tag === 'input' && typeAttr === 'checkbox') { type = '체크박스'; const label = document.querySelector(`label[for="${element.id}"]`); const labelText = label?.textContent?.trim() || '항목'; const state = element.checked ? '선택됨' : '선택 안됨'; text = `${labelText}, ${state}`; } else if (tag === 'label') { const chkId = element.getAttribute('for'), chk = chkId ? document.getElementById(chkId) : null; if (chk?.type === 'checkbox') { type = '체크박스'; const labelText = element.textContent?.trim() || '항목'; const state = chk.checked ? '선택됨' : '선택 안됨'; text = `${labelText}, ${state}`; } else { text = element.textContent?.trim(); } } else { text = element.textContent?.trim() || element.getAttribute('aria-label') || '요소'; } this.speak(type ? `${text} ${type}` : text); } catch (e) { console.error("speakElementInfo error:", e, element); this.speak("정보 읽기 오류"); } },
+        alert: function(message) { if (!message) return; this.speak(message, true); const cont = document.getElementById('alert-container'); if (cont) { cont.textContent = message; cont.style.display = 'block'; setTimeout(() => { cont.style.display = 'none'; }, 3000); } }
+      };
+
+      /**
+       * 2. FocusManager: 초점 관리
+       * (이전과 동일 - 변경 없음)
+       */
+      const FocusManager = {
+        focusableElements: [], currentFocusIndex: -1, currentContainer: null,
+        init: function() { this.setCurrentContainer(document.getElementById('home-screen'), true); console.log("FocusManager 초기화 완료"); },
+        setCurrentContainer: function(cont, setInitial = false) { if (!cont) return; this.currentContainer = cont; this.findFocusableElements(); if (setInitial && this.focusableElements.length > 0) { this.setFocus(0); } else { this.currentFocusIndex = -1; this.removeFocusHighlight(); } },
+        findFocusableElements: function() { if (!this.currentContainer) return; const sel = 'h1[tabindex="0"], button[tabindex="0"], input[type="checkbox"][tabindex="0"]'; this.focusableElements = Array.from(this.currentContainer.querySelectorAll(sel)).filter(el => el.offsetParent !== null || el.closest('.modal.modal-open')); this.currentFocusIndex = -1; },
+        setFocus: function(idx) { if (idx < 0 || idx >= this.focusableElements.length) return; this.removeFocusHighlight(); this.currentFocusIndex = idx; const el = this.focusableElements[idx]; if (el) { el.classList.add('has-focus'); SpeechManager.speakElementInfo(el); } else { this.currentFocusIndex = -1; } },
+        setFocusOnElement: function(el) { if (!el) return; const idx = this.focusableElements.indexOf(el); if (idx !== -1) this.setFocus(idx); },
+        moveFocus: function(dir) { if (this.focusableElements.length === 0) return; const nextIdx = this.currentFocusIndex + dir; if (nextIdx < 0) { SpeechManager.alert('첫 번째 항목입니다'); return; } if (nextIdx >= this.focusableElements.length) { SpeechManager.alert('마지막 항목입니다'); return; } this.setFocus(nextIdx); },
+        getCurrentElement: function() { return (this.currentFocusIndex >= 0 && this.currentFocusIndex < this.focusableElements.length) ? this.focusableElements[this.currentFocusIndex] : null; },
+        setFocusByTouch: function(x, y) { const el = document.elementFromPoint(x, y); if (!el) return; let target = this.findFocusableParent(el); if (target && this.focusableElements.includes(target)) this.setFocusOnElement(target); },
+        findFocusableParent: function(el) { let curr = el; while (curr && curr !== document.body) { if (this.focusableElements.includes(curr)) return curr; if (curr.classList.contains('checkbox-item')) { const chk = curr.querySelector('input[type="checkbox"][tabindex="0"]'); if (chk && this.focusableElements.includes(chk)) return chk; } curr = curr.parentElement; } return null; },
+        removeFocusHighlight: function() { if (this.currentFocusIndex >= 0 && this.currentFocusIndex < this.focusableElements.length) { const prev = this.focusableElements[this.currentFocusIndex]; if(prev) prev.classList.remove('has-focus'); } }
+      };
+
+      /**
+       * 3. TouchGestureManager: 터치 제스처 감지 및 처리 (탭 유지 시간 + 지연 타이머 하이브리드 적용 버전)
+       * (이전과 동일 - 변경 없음)
+       */
+      const TouchGestureManager = {
+        startX: 0, startY: 0, startTime: 0, lastTapTime: 0, lastTapX: 0, lastTapY: 0, isDragging: false, pendingSingleTapTimer: null, pendingTapCoords: { x: 0, y: 0 },
+        doubleTapDelay: 200, doubleTapDistance: 30, holdDurationThreshold: 50, singleTapDelay: 350, swipeThreshold: 50, swipeTimeLimit: 500, moveThreshold: 10,
+        init: function() { const target = document.getElementById('app-container'); target.addEventListener('touchstart', this.handleTouchStart.bind(this), { passive: false }); target.addEventListener('touchmove', this.handleTouchMove.bind(this), { passive: false }); target.addEventListener('touchend', this.handleTouchEnd.bind(this), { passive: false }); target.addEventListener('touchcancel', this.handleTouchCancel.bind(this), { passive: false }); console.log(`TouchGestureManager 초기화 완료 (Hold(${this.holdDurationThreshold}ms)+Delay(${this.singleTapDelay}ms) 적용됨)`); },
+        handleTouchStart: function(e) { if (e.touches.length > 1) { this.isDragging = false; return; } if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') { e.preventDefault(); } clearTimeout(this.pendingSingleTapTimer); this.pendingSingleTapTimer = null; const touch = e.touches[0]; this.startX = touch.clientX; this.startY = touch.clientY; this.startTime = Date.now(); this.isDragging = false; },
+        handleTouchMove: function(e) { if (e.touches.length > 1) return; const touch = e.touches[0]; const deltaX = touch.clientX - this.startX; const deltaY = touch.clientY - this.startY; if (!this.isDragging && (Math.abs(deltaX) > this.moveThreshold || Math.abs(deltaY) > this.moveThreshold)) { this.isDragging = true; clearTimeout(this.pendingSingleTapTimer); this.pendingSingleTapTimer = null; } if (this.isDragging) { e.preventDefault(); } },
+        handleTouchEnd: function(e) {
+          if (e.changedTouches.length !== 1) { this.isDragging = false; return; }
+          const touch = e.changedTouches[0]; const endX = touch.clientX; const endY = touch.clientY; const endTime = Date.now(); const touchDuration = endTime - this.startTime; const deltaX = endX - this.startX; const deltaY = endY - this.startY;
+          const timeSinceLastTap = endTime - this.lastTapTime; const distanceSinceLastTap = Math.hypot(endX - this.lastTapX, endY - this.lastTapY); let isDoubleTap = false;
+          if (timeSinceLastTap < this.doubleTapDelay && distanceSinceLastTap < this.doubleTapDistance) { isDoubleTap = true; clearTimeout(this.pendingSingleTapTimer); this.pendingSingleTapTimer = null; this.handleDoubleTap(); this.lastTapTime = 0; this.lastTapX = 0; this.lastTapY = 0; e.preventDefault(); }
+          if (!isDoubleTap) {
+            this.lastTapTime = endTime; this.lastTapX = endX; this.lastTapY = endY;
+            const isHorizontalSwipe = Math.abs(deltaX) > Math.abs(deltaY); const isSwipeDistance = Math.abs(deltaX) > this.swipeThreshold;
+            if (this.isDragging && touchDuration < this.swipeTimeLimit && isHorizontalSwipe && isSwipeDistance) { clearTimeout(this.pendingSingleTapTimer); this.pendingSingleTapTimer = null; const direction = deltaX > 0 ? 'right' : 'left'; this.handleSwipe(direction); e.preventDefault(); }
+            else if (!this.isDragging && touchDuration < this.swipeTimeLimit) {
+              clearTimeout(this.pendingSingleTapTimer);
+              if (touchDuration >= this.holdDurationThreshold) { FocusManager.setFocusByTouch(endX, endY); this.pendingSingleTapTimer = null; }
+              else { this.pendingTapCoords.x = endX; this.pendingTapCoords.y = endY; this.pendingSingleTapTimer = setTimeout(() => { FocusManager.setFocusByTouch(this.pendingTapCoords.x, this.pendingTapCoords.y); this.pendingSingleTapTimer = null; }, this.singleTapDelay); }
+              e.preventDefault();
+            }
+          } this.isDragging = false; this.startX = 0; this.startY = 0; this.startTime = 0;
+        },
+        handleTouchCancel: function(e) { clearTimeout(this.pendingSingleTapTimer); this.pendingSingleTapTimer = null; this.isDragging = false; this.startX = 0; this.startY = 0; this.startTime = 0; this.lastTapTime = 0; this.lastTapX = 0; this.lastTapY = 0; },
+        handleDoubleTap: function() { const curr = FocusManager.getCurrentElement(); if (!curr) return; if (curr.tagName === 'BUTTON') { curr.click(); } else if (curr.tagName === 'INPUT' && curr.type === 'checkbox') { const chk = curr, form = chk.closest('form'); let allow = true; if (!chk.checked && form) { const other = form.querySelector('input[type="checkbox"]:checked'); if (other && other !== chk) { SpeechManager.alert('이미 하나의 상품을 선택하셨습니다'); allow = false; } } if (allow) { chk.checked = !chk.checked; SpeechManager.speakElementInfo(chk); const ev = new Event('change', { bubbles: true }); chk.dispatchEvent(ev); } } },
+        handleSwipe: function(dir) { if (dir === 'right') FocusManager.moveFocus(1); else if (dir === 'left') FocusManager.moveFocus(-1); }
+      };
+
+      /**
+       * 4. AppStateManager: 애플리케이션 상태 및 흐름 관리
+       * (이전과 동일 - 변경 없음)
+       */
+      const AppStateManager = {
+        activeModal: null, googleFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdGuFNDeGYBBHT9Dby7o5Yp0YAmxxwg3njEfaR7uP1JYJipFw/viewform?entry.1867939657=',
+        init: function() { this.setupCategoryButtons(); this.setupBackButtons(); this.setupNextButtons(); this.setupCheckboxes(); console.log("AppStateManager 초기화 완료"); },
+        setupCategoryButtons: function() { document.querySelectorAll('.category-buttons .btn').forEach(btn => { btn.addEventListener('click', e => { const catId = btn.id.split('-').pop(); if (catId) this.openModal(catId); }); }); },
+        setupBackButtons: function() { document.querySelectorAll('.btn-back').forEach(btn => btn.addEventListener('click', e => this.closeModal())); },
+        setupNextButtons: function() { document.querySelectorAll('.btn-next').forEach(btn => btn.addEventListener('click', e => { const form = btn.closest('form'); if (form) this.handleNextButton(form); })); },
+        setupCheckboxes: function() { document.querySelectorAll('input[type="checkbox"]').forEach(chk => { chk.addEventListener('change', e => { const curr = e.target, form = curr.closest('form'); if (form && curr.checked) { form.querySelectorAll('input[type="checkbox"]').forEach(other => { if (other !== curr && other.checked) other.checked = false; }); } }); }); },
+        openModal: function(catId) { const modal = document.getElementById(`modal-${catId}`); if (!modal) return; if (this.activeModal && this.activeModal !== modal) this.closeModal(); modal.classList.add('modal-open'); modal.setAttribute('aria-hidden', 'false'); document.getElementById('app-container').classList.add('modal-active'); this.activeModal = modal; FocusManager.setCurrentContainer(modal, true); },
+        closeModal: function() { if (!this.activeModal) return; const closedId = this.activeModal.id; this.activeModal.classList.remove('modal-open'); this.activeModal.setAttribute('aria-hidden', 'true'); document.getElementById('app-container').classList.remove('modal-active'); this.activeModal = null; const home = document.getElementById('home-screen'); FocusManager.setCurrentContainer(home); const catBtnId = `btn-category-${closedId.split('-').pop()}`, catBtn = document.getElementById(catBtnId); if (catBtn && FocusManager.focusableElements.includes(catBtn)) FocusManager.setFocusOnElement(catBtn); else if (FocusManager.focusableElements.length > 0) FocusManager.setFocus(0); },
+        handleNextButton: function(form) { const chk = form.querySelector('input[type="checkbox"]:checked'); if (!chk) { SpeechManager.alert('상품을 선택해주세요'); return; } const price = chk.value; if (!price) { SpeechManager.alert("선택 상품 정보 오류"); return; } window.location.href = this.googleFormUrl + encodeURIComponent(price); }
+      };
+
+      // --- 애플리케이션 초기화 ---
+      function initApp() {
+        console.log("애플리케이션 초기화 시작...");
+        if (!SpeechManager.init()) { console.error("SpeechManager 초기화 실패."); return; }
+        FocusManager.init();
+        TouchGestureManager.init();
+        AppStateManager.init();
+        console.log("애플리케이션 초기화 완료.");
+      }
+      document.addEventListener('DOMContentLoaded', initApp);
+
+    })();
+    </script>
+
+</body>
+</html>
